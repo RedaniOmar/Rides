@@ -9,7 +9,7 @@ interface VehicleApi {
     @GET("vehicle/random_vehicle")
     suspend fun getVehicles(
         @Query("size") size: String
-    ): VehicleResponse
+    ): List<VehicleResponse>
 
     companion object {
         const val BASE_URL = "https://random-data-api.com/api/"
