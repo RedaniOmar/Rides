@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/vehicleListFragment"
         android:name="com.example.rides.feature.presentation.ui.vehiclelist.VehicleListFragment"
-        android:label="fragment_vehicle_list"
+        android:label="Vehicle List"
         tools:layout="@layout/fragment_vehicle_list" />
 </navigation>

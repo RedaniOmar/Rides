@@ -14,5 +14,5 @@ fun Resource<List<VehicleDomain>>.mapResourceVehiclesUiModel(): Resource<List<Ve
     when(this){
         is Resource.Error -> Resource.Error(message ?: "")
         is Resource.Loading -> Resource.Loading()
-        is Resource.Success -> Resource.Success(data?.mapToVehiclesUiModel())
+        is Resource.Success -> Resource.Success(data?.mapToVehiclesUiModel()?.sortedBy { it.vin })
     }
