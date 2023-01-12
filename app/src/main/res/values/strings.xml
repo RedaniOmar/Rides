@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Rides</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
+    <string name="vin_value">Vin : %1$s</string>
+    <string name="make_and_model_value">Make And Model : %1$s</string>
+    <string name="color_value">Color : %1$s</string>
+    <string name="car_type_value">Car Type : %1$s</string>
 </resources>

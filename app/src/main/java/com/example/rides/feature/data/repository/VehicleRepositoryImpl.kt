@@ -23,13 +23,13 @@ class VehicleRepositoryImpl @Inject constructor(
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = "http exception"
+                    message = "Error, we can not reach the server !"
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = "io exception",
+                    message = "Error, Please Check you internet connection !",
                 )
             )
         }

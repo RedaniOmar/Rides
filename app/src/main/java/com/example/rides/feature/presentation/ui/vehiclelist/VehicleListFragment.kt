@@ -1,15 +1,14 @@
 package com.example.rides.feature.presentation.ui.vehiclelist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.rides.R
 import com.example.rides.core.Resource
 import com.example.rides.databinding.FragmentVehicleListBinding
@@ -75,7 +74,8 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list), VehicleAda
     }
 
     override fun onItemVehicleClicked(currentVehicle: VehicleUiModel) {
-        Toast.makeText(requireContext(), "Vehicle Clicked", Toast.LENGTH_SHORT).show()
+        val action = VehicleListFragmentDirections.actionVehicleListFragmentToVehicleDetailsFragment(currentVehicle)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

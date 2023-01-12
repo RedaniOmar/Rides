@@ -5,7 +5,7 @@ import com.example.rides.feature.domain.model.VehicleDomain
 import com.example.rides.feature.presentation.ui.model.VehicleUiModel
 
 fun VehicleDomain.mapToVehicleUiModel(): VehicleUiModel = VehicleUiModel(
-    carOptions, carType, color, doors, driveType, fuelType, id, kilometrage, licensePlate, makeAndModel, mileage, specs, transmission, uid, vin
+    carType, color, makeAndModel, uid, vin
 )
 
 fun List<VehicleDomain>.mapToVehiclesUiModel(): List<VehicleUiModel> = map(VehicleDomain::mapToVehicleUiModel)
