@@ -4,6 +4,8 @@ import com.example.rides.feature.data.repository.VehicleRepositoryImpl
 import com.example.rides.feature.domain.repository.VehicleRepository
 import com.example.rides.feature.domain.usecase.VehicleUseCase
 import com.example.rides.feature.domain.usecase.VehicleUseCaseImpl
+import com.example.rides.feature.domain.usecase.validation.ValidationInput
+import com.example.rides.feature.domain.usecase.validation.ValidationInputImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,5 +24,10 @@ abstract class ViewModelModule {
     abstract fun getVehicleUseCase(
         vehicleUseCaseImpl: VehicleUseCaseImpl
     ): VehicleUseCase
+
+    @Binds
+    abstract fun getValidationDigits(
+        validationDigitsImpl: ValidationInputImpl
+    ): ValidationInput
 
 }

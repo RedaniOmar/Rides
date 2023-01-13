@@ -1,6 +1,8 @@
 package com.example.rides.feature.data.repository
 
+import com.example.rides.R
 import com.example.rides.core.Resource
+import com.example.rides.core.UniversalText
 import com.example.rides.feature.data.remote.api.VehicleApi
 import com.example.rides.feature.data.remote.dto.VehicleResponse
 import com.example.rides.feature.domain.repository.VehicleRepository
@@ -23,13 +25,19 @@ class VehicleRepositoryImpl @Inject constructor(
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = "Error, we can not reach the server !"
+                    message = UniversalText.Resource(id = R.string.error_can_not_reach_server)
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = "Error, Please Check you internet connection !",
+                    message = UniversalText.Resource(id = R.string.error_check_internet_connection),
+                )
+            )
+        } catch (e: IllegalStateException){
+            emit(
+                Resource.Error(
+                    message = UniversalText.Resource(id = R.string.error_wrong_size_request),
                 )
             )
         }

@@ -1,6 +1,7 @@
 package com.example.rides.feature.domain.mapper
 
 import com.example.rides.core.Resource
+import com.example.rides.core.UniversalText
 import com.example.rides.feature.domain.model.VehicleDomain
 import com.example.rides.feature.presentation.ui.model.VehicleUiModel
 
@@ -12,7 +13,7 @@ fun List<VehicleDomain>.mapToVehiclesUiModel(): List<VehicleUiModel> = map(Vehic
 
 fun Resource<List<VehicleDomain>>.mapResourceVehiclesUiModel(): Resource<List<VehicleUiModel>> =
     when(this){
-        is Resource.Error -> Resource.Error(message ?: "")
+        is Resource.Error -> Resource.Error(message ?: UniversalText.Empty)
         is Resource.Loading -> Resource.Loading()
         is Resource.Success -> Resource.Success(data?.mapToVehiclesUiModel()?.sortedBy { it.vin })
     }

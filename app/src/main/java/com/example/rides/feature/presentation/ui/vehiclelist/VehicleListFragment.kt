@@ -2,12 +2,15 @@ package com.example.rides.feature.presentation.ui.vehiclelist
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.rides.R
 import com.example.rides.core.Resource
@@ -16,9 +19,11 @@ import com.example.rides.feature.presentation.ui.model.VehicleUiModel
 import com.example.rides.feature.presentation.ui.util.onQueryTextSubmitted
 import com.example.rides.feature.presentation.ui.vehiclelist.adapter.VehicleAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list), VehicleAdapter.OnVehicleClickedListener {
+class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
+    VehicleAdapter.OnVehicleClickedListener {
 
     private val viewModel by viewModels<VehicleListViewModel>()
     private var _binding: FragmentVehicleListBinding? = null
@@ -37,12 +42,20 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list), VehicleAda
             adapter = vehicleAdapter
         }
 
+        lifecycleScope.launchWhenResumed {
+            viewModel.errorValidationFlow.collect{
+                binding.tvError.isVisible = true
+                binding.tvError.text = it.asString(requireContext())
+            }
+        }
+
         viewModel.vehicleLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
                     // Error Handled Silently
                 }
                 is Resource.Loading -> {
+                    binding.tvError.isVisible = false
                     // Loading
                 }
                 is Resource.Success -> {
@@ -61,7 +74,7 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list), VehicleAda
                 val searchItem = menu.findItem(R.id.action_search)
                 val searchView = searchItem.actionView as SearchView
                 searchView.onQueryTextSubmitted {
-                    viewModel.getVehicles(it)
+                    viewModel.getVehicles(it.trim())
                 }
 
             }
@@ -74,7 +87,10 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list), VehicleAda
     }
 
     override fun onItemVehicleClicked(currentVehicle: VehicleUiModel) {
-        val action = VehicleListFragmentDirections.actionVehicleListFragmentToVehicleDetailsFragment(currentVehicle)
+        val action =
+            VehicleListFragmentDirections.actionVehicleListFragmentToVehicleDetailsFragment(
+                currentVehicle
+            )
         findNavController().navigate(action)
     }
 

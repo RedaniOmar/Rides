@@ -5,4 +5,10 @@
     <string name="make_and_model_value">Make And Model : %1$s</string>
     <string name="color_value">Color : %1$s</string>
     <string name="car_type_value">Car Type : %1$s</string>
+    <string name="error_is_digits_only">Please input digits only !</string>
+    <string name="error_less_than_minimum">Please input digits greater or equal than one !</string>
+    <string name="error_higher_than_maximum">Please input digits less or equal than hundred !</string>
+    <string name="error_can_not_reach_server">Error, we can not reach the server !</string>
+    <string name="error_check_internet_connection">Error, Please Check you internet connection !</string>
+    <string name="error_wrong_size_request">Please, Enter a valid size !</string>
 </resources>
