@@ -6,13 +6,14 @@ import com.example.rides.feature.domain.model.VehicleDomain
 import com.example.rides.feature.presentation.ui.model.VehicleUiModel
 
 fun VehicleDomain.mapToVehicleUiModel(): VehicleUiModel = VehicleUiModel(
-    carType, color, makeAndModel, uid, vin
+    carType, color, kilometrage, makeAndModel, uid, vin
 )
 
-fun List<VehicleDomain>.mapToVehiclesUiModel(): List<VehicleUiModel> = map(VehicleDomain::mapToVehicleUiModel)
+fun List<VehicleDomain>.mapToVehiclesUiModel(): List<VehicleUiModel> =
+    map(VehicleDomain::mapToVehicleUiModel)
 
 fun Resource<List<VehicleDomain>>.mapResourceVehiclesUiModel(): Resource<List<VehicleUiModel>> =
-    when(this){
+    when (this) {
         is Resource.Error -> Resource.Error(message ?: UniversalText.Empty)
         is Resource.Loading -> Resource.Loading()
         is Resource.Success -> Resource.Success(data?.mapToVehiclesUiModel()?.sortedBy { it.vin })

@@ -2,6 +2,8 @@ package com.example.rides.feature.di
 
 import com.example.rides.feature.data.repository.VehicleRepositoryImpl
 import com.example.rides.feature.domain.repository.VehicleRepository
+import com.example.rides.feature.domain.usecase.CarbonEmissionUseCase
+import com.example.rides.feature.domain.usecase.CarbonEmissionUseCaseImpl
 import com.example.rides.feature.domain.usecase.VehicleUseCase
 import com.example.rides.feature.domain.usecase.VehicleUseCaseImpl
 import com.example.rides.feature.domain.usecase.validation.ValidationInput
@@ -26,8 +28,13 @@ abstract class ViewModelModule {
     ): VehicleUseCase
 
     @Binds
-    abstract fun getValidationDigits(
-        validationDigitsImpl: ValidationInputImpl
+    abstract fun getValidationInput(
+        validationInputImpl: ValidationInputImpl
     ): ValidationInput
+
+    @Binds
+    abstract fun getCarbonEmission(
+        carbonEmissionUseCaseImpl: CarbonEmissionUseCaseImpl
+    ): CarbonEmissionUseCase
 
 }

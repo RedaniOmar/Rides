@@ -11,4 +11,6 @@
     <string name="error_can_not_reach_server">Error, we can not reach the server !</string>
     <string name="error_check_internet_connection">Error, Please Check you internet connection !</string>
     <string name="error_wrong_size_request">Please, Enter a valid size !</string>
+    <string name="bottom_sheet">Bottom sheet</string>
+    <string name="carbon_emission_value">"Carbon Emission : %1$s"</string>
 </resources>

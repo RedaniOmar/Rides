@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class VehicleUiModel(
     val carType: String,
     val color: String,
+    val kilometrage: Int,
     val makeAndModel: String,
     val uid: String,
     val vin: String
