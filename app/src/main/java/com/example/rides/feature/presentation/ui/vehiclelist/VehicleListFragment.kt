@@ -42,10 +42,15 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
             adapter = vehicleAdapter
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getVehicles(vehicleAdapter.itemCount.toString())
+        }
+
         lifecycleScope.launchWhenResumed {
-            viewModel.errorValidationFlow.collect{
+            viewModel.errorValidationFlow.collect {
                 binding.tvError.isVisible = true
                 binding.tvError.text = it.asString(requireContext())
+                binding.swipeRefreshLayout.isRefreshing = false
             }
         }
 
@@ -53,13 +58,19 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
             when (it) {
                 is Resource.Error -> {
                     // Error Handled Silently
+                    binding.prLoader.isVisible = false
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Resource.Loading -> {
                     binding.tvError.isVisible = false
-                    // Loading
+                    binding.prLoader.isVisible = true
                 }
                 is Resource.Success -> {
+
                     vehicleAdapter.submitList(it.data)
+
+                    binding.swipeRefreshLayout.isRefreshing = false
+                    binding.prLoader.isVisible = false
                 }
             }
         }

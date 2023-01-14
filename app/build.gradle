@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // RecyclerView
-    implementation "androidx.recyclerview:recyclerview:$recyclerView"
+    implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
 
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$dagger_version"
@@ -63,8 +63,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Retrofit + GSON
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // SWIPE REFRESH
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_version"
 
 }
 kapt {
