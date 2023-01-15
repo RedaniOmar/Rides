@@ -67,10 +67,10 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
                 }
                 is Resource.Success -> {
 
-                    vehicleAdapter.submitList(it.data)
-
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.prLoader.isVisible = false
+
+                    vehicleAdapter.submitList(it.data)
                 }
             }
         }
@@ -84,6 +84,7 @@ class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
                 menuInflater.inflate(R.menu.search_menu, menu)
                 val searchItem = menu.findItem(R.id.action_search)
                 val searchView = searchItem.actionView as SearchView
+                searchView.queryHint = getString(R.string.size_to_retrieve)
                 searchView.onQueryTextSubmitted {
                     viewModel.getVehicles(it.trim())
                 }

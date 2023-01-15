@@ -13,4 +13,5 @@
     <string name="error_wrong_size_request">Please, Enter a valid size !</string>
     <string name="bottom_sheet">Bottom sheet</string>
     <string name="carbon_emission_value">"Carbon Emission : %1$s"</string>
+    <string name="size_to_retrieve">Input Size To Retrieve ...</string>
 </resources>
