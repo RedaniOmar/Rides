@@ -4,6 +4,8 @@ interface ValidationInput {
 
     operator fun invoke(size: String): ValidationResult
 
+    fun emptySize(size: String): Boolean
+
     fun isDigitsOnly(size: String): Boolean
 
     fun lessThanMinimum(size: String): Boolean

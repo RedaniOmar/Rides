@@ -14,6 +14,13 @@ class ValidationInputImplTest {
     }
 
     @Test
+    fun `empty, returns error`() {
+        val input = ""
+        val result = validationInputImpl(input)
+        assertTrue(result is ValidationResult.Error)
+    }
+
+    @Test
     fun `blank, returns error`() {
         val input = "    "
         val result = validationInputImpl(input)
