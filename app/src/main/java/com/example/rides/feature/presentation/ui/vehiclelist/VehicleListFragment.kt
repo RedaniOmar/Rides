@@ -2,7 +2,6 @@ package com.example.rides.feature.presentation.ui.vehiclelist
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
@@ -19,7 +18,6 @@ import com.example.rides.feature.presentation.ui.model.VehicleUiModel
 import com.example.rides.feature.presentation.ui.util.onQueryTextSubmitted
 import com.example.rides.feature.presentation.ui.vehiclelist.adapter.VehicleAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class VehicleListFragment : Fragment(R.layout.fragment_vehicle_list),
